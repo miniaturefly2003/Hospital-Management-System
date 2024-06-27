@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Patients</title>
+</head>
+<body>
+    <h1>Registerd Patients</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Phonenumber</th>
+                <th>Ailment</th>
+                <th>Email</th>
+                <th>Feedback</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for patient in allpatients %}
+            <form method="post" action="{% url 'updatepatient' patient.pk %}">
+                {% csrf_token %}
+                <tr>
+                    <td><input type="text" value="{{ patient.name }}" name="name"></td>
+                    <td><input type="text" value="{{ patient.address }}" name="address"></td>
+                    <td><input type="number" value="{{ patient.number }}" name="number"></td>
+                    <td><input type="text" value="{{ patient.ailment }}" name="ailment"></td>
+                    <td><input type="text" value="{{ patient.email }}" name="email"></td>
+                    <td><input type="text" value="{{ patient.feedback }}" name="feedback"></td>
+                    <td><button type="submit" class="my-button">Update Patient</button></td>
+                    <td><a href ="{% url 'deletepatient' patient.pk %}">Delete</a></td>
+                </tr>
+            </form>
+            {% endfor %}
+        </tbody>
+    </table>
+    <form method="post" action="{% url 'admin' %}">
+        {% csrf_token %}
+            <button type="submit">Admin</button>
+    </form>
+</body>
+</html>

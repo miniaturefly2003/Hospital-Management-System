@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page</title>
+</head>
+<body>
+    <h1>Admin Page</h1>
+    <form method="post" action="{% url 'registerdoctor' %}">
+        {% csrf_token %}
+        <button type="submit">Register Doctor</button>
+    </form>
+    <form method="post" action="{% url 'registerpatient' %}">
+        {% csrf_token %}
+        <button type="submit">Register Patient</button>
+    </form>
+    <form method="post" action="{% url 'alldoctor' %}">
+        {% csrf_token %}
+        <button type="submit">List Doctors</button>
+    </form>
+    <form method="post" action="{% url 'allpatient' %}">
+        {% csrf_token %}
+        <button type="submit">List Patients</button>
+    </form>
+    <form method="post" action="{% url 'login' %}">
+        {% csrf_token %}
+            <button type="submit">login</button>
+    </form>
+</body>
+</html>
