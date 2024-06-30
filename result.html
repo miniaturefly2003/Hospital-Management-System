@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Detection Result</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <h2>Detection Result</h2>
+    {% if result_image_name %}
+        <!-- Display the detected image -->
+        <img src="{% url 'serve_detected_image' result_image_name %}" alt="Detected Image" >
+        <h3>Distinct Ship Names Detected:</h3>
+        <ul>
+            {% for ship_name in distinct_ship_names %}
+                <!-- Display ship names as clickable links -->
+                <li><a href="{% url 'ship_details' ship_name %}">{{ ship_name }}</a></li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No detection result available.</p>
+    {% endif %}
+</body>
+</html>
