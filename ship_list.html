@@ -1,0 +1,16 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>List of Ships</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <h2>List of Ships</h2>
+    <ul>
+        {% for ship in ships %}
+            <li><a href="{% url 'ship_details' ship.shipname %}">{{ ship.shipname }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
